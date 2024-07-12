@@ -1,0 +1,113 @@
+# This is a basic GitHub Action workflow file. It's going to be triggered
+# when code is merged into the main branch.
+
+name: Build, Test and Publish
+
+# This specifies the events that will trigger the workflow.
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+# A workflow consists of one or more jobs that run in parallel.
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@greggsetzer'
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: |
+          npm run lint
+          npm run build
+
+      - name: Run unit tests
+        run: npm test
+
+      - name: Save build output
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: ./dist
+
+  # Job #2 - bump the NPM Package.json version # and publish to GitHub Packages.
+  bump-version-and-publish:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download build output
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: ./dist
+
+      - name: Specify the node version
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: Configure Git Credentials
+        run: |
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git config user.name "${{ github.actor}}"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Ensure a clean working directory
+        run: |
+          git add .
+          git commit -m "Clean working directory" || echo "No changes to commit"
+
+      - name: Pull the latest
+        run:
+          git pull
+
+      - name: Bump version
+        run: npm version patch
+        env:
+          CI: true
+
+      - name: Commit version bump
+        run: |
+          git add package.json package-lock.json
+          git commit -m "Bump version" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Add global .npmrc file
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
+      - name: Publish to GitHub packages
+        run:
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
