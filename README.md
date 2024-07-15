@@ -19,6 +19,21 @@ ensure that their user interfaces adhere to established design guidelines, promo
 identity. This approach facilitates the creation of standardized, reusable components that can be 
 utilized across various projects, improving efficiency and reducing duplication of effort.
 
+## Installing the project
+```bash
+# Clone the project
+$ git clone https://github.com/GreggSetzer/beartracks-ui.git
+
+# Install dependencies
+$ npm install
+
+# Test project
+$ npm test
+
+# Build project
+$ npm build
+```
+
 ### Tools and Technologies
 
 - **[React](https://react.dev/)**: A JavaScript library for building user interfaces, ensuring efficient updates and rendering of components.
