@@ -4,6 +4,12 @@ Beartracks UI is a design library for a fictional web application showcasing the
 National Parks](https://nps.gov/index.htm). Built with React and Tailwind CSS, the goal os this library 
 is to show how to create reusable UI components that can be easily integrated into any React-based project. 
 
+This project was inspired by the rich data provided by the NPS.gov API, which offers extensive information 
+about the United States National Parks. This project aims to create an engaging and informative web 
+application that showcases the national parks, making it easier for users to explore and learn about 
+these places. 
+
+View the **[Swagger API docs](https://www.nps.gov/subjects/developer/api-documentation.htm)** here.
 
 ## Project Overview
 
