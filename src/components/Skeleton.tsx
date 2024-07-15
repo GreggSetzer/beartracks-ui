@@ -6,10 +6,7 @@ interface SkeletonProps {
   className?: string;
 }
 
-const Skeleton: React.FC<SkeletonProps> = ({
-  times = 3,
-  className = 'h-10 w-full',
-}) => {
+const Skeleton = ({times = 3, className = 'h-10 w-full'}: SkeletonProps) => {
   const outerClassNames = classNames(
     'relative',
     'overflow-hidden',
@@ -32,7 +29,7 @@ const Skeleton: React.FC<SkeletonProps> = ({
   const skeletonItems = Array(times)
     .fill(0)
     .map((_, i) => (
-      <div key={i} className={outerClassNames}>
+      <div key={i} className={outerClassNames} role="presentation">
         <div className={innerClassNames} />
       </div>
     ));

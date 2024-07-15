@@ -18,14 +18,14 @@ describe('Input Component', () => {
       />
     );
 
-    const inputElement = screen.getByLabelText('Label');
+    const element = screen.getByLabelText('Label');
 
-    expect(inputElement).toBeInTheDocument();
-    expect(inputElement).toHaveAttribute('id', 'testId');
-    expect(inputElement).toHaveAttribute('name', 'testName');
-    expect(inputElement).toHaveAttribute('type', 'text');
-    expect(inputElement).toHaveAttribute('min', '5');
-    expect(inputElement).toHaveAttribute('max', '10');
+    expect(element).toBeInTheDocument();
+    expect(element).toHaveAttribute('id', 'testId');
+    expect(element).toHaveAttribute('name', 'testName');
+    expect(element).toHaveAttribute('type', 'text');
+    expect(element).toHaveAttribute('min', '5');
+    expect(element).toHaveAttribute('max', '10');
   });
 
   test('Calls the onChange handler when the input value changes', () => {
@@ -43,9 +43,9 @@ describe('Input Component', () => {
       />
     );
 
-    const inputElement = screen.getByLabelText('Label');
+    const element = screen.getByLabelText('Label');
 
-    fireEvent.change(inputElement, { target: { value: 'new value' } });
+    fireEvent.change(element, { target: { value: 'new value' } });
 
     expect(handleChange).toHaveBeenCalledTimes(1);
   });
@@ -68,10 +68,10 @@ describe('Input Component', () => {
         />
       );
 
-      const inputElement = screen.getByLabelText(`Label ${type}`);
+      const element = screen.getByLabelText(`Label ${type}`);
 
-      expect(inputElement).toBeInTheDocument();
-      expect(inputElement).toHaveAttribute('type', type);
+      expect(element).toBeInTheDocument();
+      expect(element).toHaveAttribute('type', type);
       cleanup();
     });
   });

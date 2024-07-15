@@ -58,12 +58,13 @@ const ImageCard = ({
         href={linkUrl}
         target={newBrowserTab ? '_blank' : '_self'}
         rel={newBrowserTab ? 'noopener noreferrer' : undefined}
+        aria-label={`Link to ${title}`}
       >
         <img className="w-full max-h-48 object-cover" src={imgSrc} alt={alt} />
       </a>
       <div className="px-6 py-4">
         <p className="font-bold mb-2">
-          <a href={linkUrl} className="hover:underline">
+          <a href={linkUrl} className="hover:underline" aria-label={`Link to ${title}`}>
             {title}
           </a>
         </p>
