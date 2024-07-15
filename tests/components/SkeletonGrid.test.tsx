@@ -4,7 +4,11 @@ import SkeletonGrid from '../../src/components/SkeletonGrid';
 
 jest.mock('../../src/components/Skeleton', () => {
   return function DummySkeleton(props: { className: string; times: number }) {
-    return <div data-testid="skeleton" className={props.className}>Skeleton</div>;
+    return (
+      <div data-testid="skeleton" className={props.className}>
+        Skeleton
+      </div>
+    );
   };
 });
 

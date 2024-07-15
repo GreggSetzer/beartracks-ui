@@ -19,4 +19,4 @@ describe('Skeleton Component', () => {
 
     expect(skeletonItems[0]).toHaveClass(customClassName);
   });
-})
+});

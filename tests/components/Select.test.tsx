@@ -1,9 +1,8 @@
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
-import Input from '../../src/components/Input';
 import Select, { Option } from '../../src/components/Select';
 import React from 'react';
 
-const labelName = 'Select an Option'
+const labelName = 'Select an Option';
 const options: Option[] = [
   { label: 'Option 1', value: '1', inactive: false },
   { label: 'Option 2', value: '2', inactive: false },
@@ -21,7 +20,7 @@ const renderElement = (onChange = () => {}) => {
       options={options}
     />
   );
-}
+};
 
 describe('Select Component', () => {
   afterEach(cleanup);

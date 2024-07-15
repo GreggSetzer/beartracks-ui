@@ -64,7 +64,11 @@ const ImageCard = ({
       </a>
       <div className="px-6 py-4">
         <p className="font-bold mb-2">
-          <a href={linkUrl} className="hover:underline" aria-label={`Link to ${title}`}>
+          <a
+            href={linkUrl}
+            className="hover:underline"
+            aria-label={`Link to ${title}`}
+          >
             {title}
           </a>
         </p>

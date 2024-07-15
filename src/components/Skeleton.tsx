@@ -6,7 +6,7 @@ interface SkeletonProps {
   className?: string;
 }
 
-const Skeleton = ({times = 3, className = 'h-10 w-full'}: SkeletonProps) => {
+const Skeleton = ({ times = 3, className = 'h-10 w-full' }: SkeletonProps) => {
   const outerClassNames = classNames(
     'relative',
     'overflow-hidden',

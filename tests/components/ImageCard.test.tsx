@@ -12,8 +12,8 @@ const renderElement = (newBrowserTab = false) => {
       linkUrl="https://www.react.dev"
       newBrowserTab={newBrowserTab}
     />
-  )
-}
+  );
+};
 
 describe('ImageCard Component', () => {
   test('Renders an ImageCard', () => {
